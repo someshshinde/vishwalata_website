@@ -9,6 +9,7 @@ use App\Models\Backend\EventsModel;
 use App\Models\Backend\FacultyModel;
 use App\Models\Backend\NewsModel;
 use App\Models\Backend\AchivementModel;
+use App\Models\Backend\ConfigModel;
 
 class BackendController extends BaseController
 {
@@ -52,6 +53,66 @@ class BackendController extends BaseController
         return view('backend/pages/shared/header', $data) .
             view('backend/pages/dashboard') .
             view('backend/pages/shared/footer');
+    }
+    public function config()
+    {
+        $session = session();
+        if (!$session->get('isLoggedIn')) {
+            return redirect()->to('/admin')->with('error', 'Session Timeout please Login Again');
+        }
+        $configModel= new ConfigModel();
+        $data['config'] = $configModel->getConfig();
+
+        $data['is_active'] = "config";
+        return view('backend/pages/shared/header', $data) .
+            view('backend/pages/config/update',$data) .
+            view('backend/pages/shared/footer');
+    }
+    public function config_update()
+    {
+        $session = session();
+        if (!$session->get('isLoggedIn')) {
+            return redirect()->to('/admin')->with('error', 'Session Timeout please Login Again');
+        }
+        $configModel = new ConfigModel();
+        if ($this->request->getMethod() == 'POST') {
+            $data = [
+                'email' => $this->request->getPost('email'),
+                'phone' => $this->request->getPost('phone'),
+                'name' => $this->request->getPost('name'),
+                'address' => $this->request->getPost('address'),
+                'facebook' => $this->request->getPost('facebook'),
+                'instagram' => $this->request->getPost('instagram'),
+                'youtube' => $this->request->getPost('youtube'),
+                
+            ];
+             //image upload
+            $image = $this->request->getFile('img');
+            if ($image != "") {
+
+                if ($image->isValid() && !$image->hasMoved()) {
+                    //validation image only jpeg format
+                    $ext = $image->getClientExtension();
+                    if ($ext != 'jpeg' && $ext != 'jpg' && $ext != 'png') {
+                        $result['errors'] = ['Image upload failed ! Only jpeg, jpg and png format allowed'];
+                        return redirect()->to('/admin/config/update')->with('error', $result['errors']);
+                    }
+
+                    $newName = $image->getRandomName();
+                    $image->move('frontend/img/logo/', $newName);
+                    $data['logo'] = $newName;
+                } else {
+                    $result['errors'] = ['Image upload failed'];
+                    return redirect()->to('/admin/config/update')->with('error', $result['errors']);
+                }
+            }
+            $result = $configModel->updateConfig($data);
+            if ($result['status'] != "") {
+                return redirect()->to('/admin/config')->with('success', 'Configuration Updated Successfully');
+            } else {
+                return redirect()->to('/admin/config')->with('error', $result['errors']);
+            }
+        }
     }
     public function department_add()
     {
@@ -245,6 +306,8 @@ class BackendController extends BaseController
         }
         $coursesModel = new CoursesModel();
         $data['courses'] = $coursesModel->getCourses($id);
+           $departmentModel = new DepartmentModel();
+        $data['departments'] = $departmentModel->getDepartment();
         $data['is_active'] = "courses";
         return view('backend/pages/shared/header', $data) .
             view('backend/pages/courses/add', $data) .

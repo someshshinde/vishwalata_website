@@ -38,8 +38,8 @@
 							<div class="single-footer-widget">
 								<h4>Contact Us</h4>
 								<ul>
-									<li><a href="tel:+919545126722"><span class="lnr lnr-phone-handset"></span> <span class="text">+91 9545126722</span></a></li>
-									<li><a href="mailto:support@colorlib.com"><span class="lnr lnr-envelope"></span> <span class="text">support@colorlib.com</span></a></li>
+									<li><a href="tel:+91<?=$config['phone'];?>"><span class="lnr lnr-phone-handset"></span> <span class="text">+91&nbsp;<?=$config['phone'];?></span></a></li>
+									<li><a href="mailto:<?=$config['email'];?>"><span class="lnr lnr-envelope"></span> <span class="text"><?=$config['email'];?></span></a></li>
 								</ul>
 							</div>
 						</div>
@@ -48,13 +48,14 @@
 								<h4>Newsletter</h4>
 								<p>Stay update with our latest</p>
 								<div class="" id="mc_embed_signup">
-									<form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get">
+									<form target="_blank" action="mailto:<?=$config['email'];?>" method="get">
 										<div class="input-group">
 											<input type="text" class="form-control" name="EMAIL" placeholder="Enter Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email Address '" required="" type="email">
 											<div class="input-group-btn">
 												<button class="btn btn-default" type="submit">
-													<span class="lnr lnr-arrow-right"></span>
-												</button>
+													
+													<span class="lnr lnr-arrow-right"></span></a>
+												 </button>
 											</div>
 											<div class="info"></div>
 										</div>
@@ -67,12 +68,12 @@
 						<p class="footer-text m-0 col-lg-6 col-md-12"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 							Copyright &copy;<script>
 								document.write(new Date().getFullYear());
-							</script> All rights reserved | Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a> &amp; distributed by <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
+							</script> All rights reserved | Vishwalata College || Website Design and Developed By <a href="http://linkedin.com/in/somesh-shinde-44911b84">Somesh Shinde</a>
 							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
 						<div class="col-lg-6 col-sm-12 footer-social">
-							<a href="https://www.facebook.com/profile.php?id=100063743666294" target="_blank"><i class="fa fa-facebook"></i></a>
-							<a href="https://www.instagram.com/vishwalata_institute?igsh=Mnd2bjBxdXFpdDY2&utm_source=ig_contact_invite" target="_blank"><i class="fa fa-instagram"></i></a>
-							<a href="https://youtube.com/@vacs9545?si=-teYddm35zi8RDmt" target="_blank"><i class="fa fa-youtube-play"></i></a>
+							<a href="<?=$config['facebook'];?>" target="_blank"><i class="fa fa-facebook"></i></a>
+							<a href="<?=$config['instagram'];?>" target="_blank"><i class="fa fa-instagram"></i></a>
+							<a href="<?=$config['youtube'];?>" target="_blank"><i class="fa fa-youtube-play"></i></a>
 						</div>
 					</div>
 				</div>

@@ -285,7 +285,7 @@ $documents=[
 						</a>
 					</li> -->
 				</ul>
-				<a href="#" class="primary-btn text-uppercase">Enroll the course</a>
+				<a href="mailto:<?= $config['email']; ?>" class="primary-btn text-uppercase">Enroll the course</a>
 			</div>
 		</div>
 	</div>

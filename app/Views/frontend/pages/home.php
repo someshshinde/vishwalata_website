@@ -101,13 +101,23 @@ include_once(APPPATH . 'Views/frontend/inc/feature.php');
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 search-course-right section-gap">
-                <form class="form-wrap" action="#">
+
+                <form class="form-wrap" action="<?= base_url('/inquiry'); ?>" method="POST">
+                    <input type="hidden" name="path" value="home">
+
                     <h4 class="text-white pb-20 text-center mb-30">Search for Available Course</h4>
-                    <input type="text" class="form-control" name="name" placeholder="Your Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Name'">
-                    <input type="phone" class="form-control" name="phone" placeholder="Your Phone Number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Phone Number'">
-                    <input type="email" class="form-control" name="email" placeholder="Your Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address'">
+                    <?php if (session()->has('success') || session()->getFlashdata('success')): ?>
+                        <h5 class="text-white pb-20 text-center mb-30">
+                            <?= esc(session()->getFlashdata('success')) ?>
+                        </h5>
+                    <?php endif; ?>
+
+                    <input type="text" class="form-control" name="name" placeholder="Your Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Name'" required>
+                    <input type="phone" class="form-control" name="mobile" pattern="[0-9]{10}" placeholder="Your Mobile Number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Phone Number'" required>
+                    <input type="email" class="form-control" name="email" placeholder="Your Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address'" required>
+                    <input type="text" class="form-control" name="message" placeholder="Your Message" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Message'" required>
                     <div class="form-select" id="service-select">
-                        <select>
+                        <select name="course" required>
                             <option datd-display="">Choose Course</option>
                             <?php foreach ($course_data as $course): ?>
                                 <option value="<?= $course['name']; ?>"><?= $course['short_name']; ?></option>
@@ -175,7 +185,7 @@ include_once(APPPATH . 'Views/frontend/inc/review.php');
                 <p>
                     There is a moment in the life of any aspiring astronomer that it is time to buy that first telescope. It’s exciting to think about setting up your own viewing station whether that is on the deck.
                 </p>
-                <a class="primary-btn wh" href="#">Apply for the post</a>
+                <a class="primary-btn wh" href="mailto:<?= $config['email']; ?>">Apply for the post</a>
             </div>
         </div>
     </div>

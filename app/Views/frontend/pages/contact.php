@@ -29,9 +29,9 @@
 									<span class="lnr lnr-home"></span>
 								</div>
 								<div class="contact-details">
-									<h5>Vishwalata Arts,Comm.&Science College</h5>
+									<h5><?=$config['name'];?></h5>
 									<p>
-										 Bhatgaon.Tal Yeola Dist Nahik 423401 (M.H)
+										<?=$config['address'];?>
 									</p>
 								</div>
 							</div>
@@ -40,7 +40,7 @@
 									<span class="lnr lnr-phone-handset"></span>
 								</div>
 								<div class="contact-details">
-									<h5>+91 9545126722</h5>
+									<h5>+91 <?=$config['phone'];?></h5>
 									<p>Mon to Fri 9am to 6 pm</p>
 								</div>
 							</div>
@@ -49,20 +49,23 @@
 									<span class="lnr lnr-envelope"></span>
 								</div>
 								<div class="contact-details">
-									<h5>support@colorlib.com</h5>
+									<h5><?=$config['email'];?></h5>
 									<p>Send us your query anytime!</p>
 								</div>
 							</div>														
 						</div>
 						<div class="col-lg-8">
-							<form class="form-area contact-form text-right" id="myForm" action="mail.php" method="post">
-								<div class="row">	
+							<p style="color: green;"><?= esc(session()->getFlashdata('success')) ?></p>
+							<form class="form-area contact-form text-right" action="<?=base_url('/inquiry');?>" method="POST">
+								<input type="hidden" name="path" value="contact">
+								<div class="row">
+
 									<div class="col-lg-6 form-group">
 										<input name="name" placeholder="Enter your name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'" class="common-input mb-20 form-control" required="" type="text">
 									
 										<input name="email" placeholder="Enter email address" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" class="common-input mb-20 form-control" required="" type="email">
 
-										<input name="subject" placeholder="Enter subject" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter subject'" class="common-input mb-20 form-control" required="" type="text">
+										<input name="mobile" placeholder="Enter Phone" pattern="[0-9]{10}" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Phone'" class="common-input mb-20 form-control" required="" type="text">
 									</div>
 									<div class="col-lg-6 form-group">
 										<textarea class="common-textarea form-control" name="message" placeholder="Enter Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Messege'" required=""></textarea>				

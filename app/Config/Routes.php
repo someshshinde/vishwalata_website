@@ -8,10 +8,12 @@ use CodeIgniter\Router\RouteCollection;
  */
 ;
 $routes->get('/', 'Home::index');
+$routes->get('/home', 'Home::index');
 $routes->set404Override('\App\Controllers\Home::error404');
 
 $routes->get('/about','Home::about');
 $routes->get('/contact','Home::contact');
+$routes->post('/inquiry','Home::inquiry');
 
 $routes->get('/director_message','Home::director_message');
 $routes->get('/secretary_desk','Home::secretary_desk');
@@ -64,7 +66,8 @@ $routes->get('/naac/vacs/year_wise_event_and_program','NaacController::vacs_year
 $routes->get('/admin','BackendController::index');
 $routes->post('/admin/login','BackendController::login');
 $routes->get('/admin/dashboard','BackendController::dashboard');
-
+$routes->get('/admin/config','BackendController::config');
+$routes->post('/admin/config/update','BackendController::config_update');
 //department
 $routes->get('/admin/department/add','BackendController::department_add');
 $routes->post('/admin/department/add/new','BackendController::department_add');

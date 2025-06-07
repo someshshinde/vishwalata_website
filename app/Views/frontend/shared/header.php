@@ -71,7 +71,7 @@ $naac_data = [
 	<!-- meta character set -->
 	<meta charset="UTF-8">
 	<!-- Site Title -->
-	<title>Education</title>
+	<title><?= $config['name']; ?></title>
 
 	<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
 	<!--
@@ -101,15 +101,15 @@ $naac_data = [
 				<div class="row">
 					<div class="col-lg-6 col-sm-6 col-8 header-top-left no-padding">
 						<ul>
-							<li><a href="https://www.facebook.com/profile.php?id=100063743666294" target="_blank"><i class="fa fa-facebook"></i></a></li>
-							<li><a href="https://www.instagram.com/vishwalata_institute?igsh=Mnd2bjBxdXFpdDY2&utm_source=ig_contact_invite" target="_blank"><i class="fa fa-instagram"></i></a></li>
-							<li><a href="https://youtube.com/@vacs9545?si=-teYddm35zi8RDmt" target="_blank"><i class="fa fa-youtube-play"></i></a></li>
-							
+							<li><a href="<?=$config['facebook'];?>" target="_blank"><i class="fa fa-facebook"></i></a></li>
+							<li><a href="<?=$config['instagram'];?>" target="_blank"><i class="fa fa-instagram"></i></a></li>
+							<li><a href="<?=$config['youtube'];?>" target="_blank"><i class="fa fa-youtube-play"></i></a></li>
+
 						</ul>
 					</div>
 					<div class="col-lg-6 col-sm-6 col-4 header-top-right no-padding">
-						<a href="tel:+919545126722"><span class="lnr lnr-phone-handset"></span> <span class="text">+91 9545126722</span></a>
-						<a href="mailto:support@colorlib.com"><span class="lnr lnr-envelope"></span> <span class="text">support@colorlib.com</span></a>
+						<a href="tel:+91<?=$config['phone'];?>"><span class="lnr lnr-phone-handset"></span> <span class="text">+91&nbsp;<?=$config['phone'];?></span></a>
+						<a href="mailto:<?=$config['email'];?>"><span class="lnr lnr-envelope"></span> <span class="text"><?=$config['email'];?></span></a>
 					</div>
 				</div>
 			</div>
@@ -117,7 +117,7 @@ $naac_data = [
 		<div class="container main-menu">
 			<div class="row align-items-center justify-content-between d-flex">
 				<div id="logo">
-					<a href="#"><img src="<?= base_url('frontend/img/logo/logo.png'); ?>" alt="LOGO" title="LOGO" loading="lazy" class="logo" /></a>
+					<a href="#"><img src="<?= base_url('frontend/img/logo/' . $config['logo']); ?>" alt="LOGO" title="LOGO" loading="lazy" class="logo" /></a>
 				</div>
 				<nav id="nav-menu-container">
 					<ul class="nav-menu">
